@@ -18,11 +18,6 @@ document.getElementById('btn_add').addEventListener("click", () => {
 
     listar();
 
-    if(qnt_pessoas % 2 == 0){
-        alert(`A quantidade de pessoas é par`)
-    } else {
-        alert(`A quantidade de pessoas é ímpar`)
-    }
 });
 
 
