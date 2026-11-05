@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar | SportMap</title>
+    <script src="../js/idioma_textos.js"></script>
+    <script src="../js/preferencias.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main class="pagina-login">
+        <div class="caixa-login">
+            <span class="marca">Sport<span>Map</span></span>
+            <p class="chamada">Encontre uma partida e entre em campo.</p>
+            <div id="aviso" role="alert"></div>
+            <form id="form" class="painel">
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" autocomplete="username" required>
+                </div>
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="botao inteiro">Entrar</button>
+            </form>
+            <p class="chamada">Ainda não tem conta? <a href="usuario_novo_LEO.html">Cadastre-se</a></p>
+        </div>
+    </main>
+    <script src="../js/valida_sessao.js"></script>
+    <script src="../js/usuario_login.js"></script>
+</body>
+</html>
