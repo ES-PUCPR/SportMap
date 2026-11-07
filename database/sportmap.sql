@@ -1,18 +1,11 @@
--- =====================================================
 -- SportMap - criação do banco de dados
--- Baseado no modelo lógico (13 tabelas)
--- =====================================================
+-- Baseado no modelo lógico (inicialmente 13 tabelas)
 
 CREATE DATABASE IF NOT EXISTS sportmap
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
 USE sportmap;
-
--- =====================================================
--- NÍVEL 1: tabelas que NÃO dependem de nenhuma outra
--- (nenhuma FK, por isso podem ser criadas primeiro)
--- =====================================================
 
 CREATE TABLE perfil_acesso (
     id_perfil   INT AUTO_INCREMENT PRIMARY KEY,
@@ -40,19 +33,14 @@ CREATE TABLE time_futebol (
     sigla   VARCHAR(10)
 ) ENGINE=InnoDB;
 
--- =====================================================
--- NÍVEL 2: tabelas que dependem das do nível 1
--- =====================================================
-
 CREATE TABLE login (
     id_login     INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario   INT          NOT NULL,
-    senha        VARCHAR(255) NOT NULL,  -- guarda o HASH da senha, nunca a senha pura
+    senha        VARCHAR(255) NOT NULL,  -- guarda o HASH da senha
     data_criacao DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 ) ENGINE=InnoDB;
 
--- Tabela associativa (N:N entre usuario e perfil_acesso)
 CREATE TABLE usuario_perfil (
     id_usuario INT NOT NULL,
     id_perfil  INT NOT NULL,
@@ -85,11 +73,6 @@ CREATE TABLE partida (
     FOREIGN KEY (id_modalidade) REFERENCES modalidade(id_modalidade)
 ) ENGINE=InnoDB;
 
--- =====================================================
--- NÍVEL 3: tabelas que dependem das do nível 2
--- =====================================================
-
--- Tabela associativa (N:N entre partida e quadra) com atributos próprios
 CREATE TABLE partida_quadra (
     id_partida     INT NOT NULL,
     id_quadra      INT NOT NULL,
@@ -100,7 +83,6 @@ CREATE TABLE partida_quadra (
     FOREIGN KEY (id_quadra)  REFERENCES quadra(id_quadra)
 ) ENGINE=InnoDB;
 
--- Tabela associativa (N:N entre jogador e time_futebol)
 CREATE TABLE jogador_time (
     id_jogador   INT NOT NULL,
     id_time      INT NOT NULL,
@@ -110,7 +92,6 @@ CREATE TABLE jogador_time (
     FOREIGN KEY (id_time)    REFERENCES time_futebol(id_time)
 ) ENGINE=InnoDB;
 
--- Tabela associativa (N:N entre jogador e partida)
 CREATE TABLE escalacao (
     id_jogador INT NOT NULL,
     id_partida INT NOT NULL,
