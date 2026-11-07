@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportMap</title>
+    <script src="../js/idioma.js"></script>
+    <script src="../js/tema.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header><nav id="menu"></nav><select id="idioma">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+        </select><button id="tema"></button></header>
+    <main>
+        <div id="partida" class="caixa"></div>
+        <div class="caixa" id="acoes" hidden>
+            <label for="posicao">Sua posição</label>
+            <select id="posicao">
+                <option value="">Sem preferência</option>
+                <option value="Goleiro">Goleiro</option>
+                <option value="Zagueiro">Zagueiro</option>
+                <option value="Lateral">Lateral</option>
+                <option value="Volante">Volante</option>
+                <option value="Meia">Meia</option>
+                <option value="Atacante">Atacante</option>
+            </select>
+            <button id="entrar">Entrar na partida</button>
+            <button id="alterar">Trocar posição</button>
+            <button id="sair">Sair da partida</button>
+        </div>
+        <div class="caixa" id="convite" hidden>
+            <label for="email_convite">Convidar jogador por e-mail</label>
+            <input type="email" id="email_convite">
+            <button id="convidar">Convidar</button>
+        </div>
+        <div class="caixa">
+            <h2>Jogadores</h2>
+            <div id="jogadores"></div>
+        </div>
+        <a href="index.html">Voltar</a>
+    </main>
+    <script src="../js/valida_sessao.js"></script>
+    <script src="../js/partida_detalhe.js"></script>
+</body>
+</html>

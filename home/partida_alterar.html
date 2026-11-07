@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportMap</title>
+    <script src="../js/idioma.js"></script>
+    <script src="../js/tema.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header><nav id="menu"></nav><select id="idioma">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+        </select><button id="tema"></button></header>
+    <main>
+        <div class="caixa">
+            <h1>Alterar partida</h1>
+            <label for="id_quadra">Quadra</label>
+            <select id="id_quadra"></select>
+            <label for="id_modalidade">Modalidade</label>
+            <select id="id_modalidade"></select>
+            <label for="tipo_acesso">Tipo de partida</label>
+            <select id="tipo_acesso">
+                <option value="publica">Pública</option>
+                <option value="privada_visivel">Privada visível (entrada com aprovação)</option>
+                <option value="privada_convite">Privada somente por convite</option>
+            </select>
+            <label for="max_jogadores">Número de jogadores</label>
+            <input type="number" id="max_jogadores" min="2">
+            <label for="data">Data</label>
+            <input type="date" id="data">
+            <label for="horario_inicio">Início</label>
+            <input type="time" id="horario_inicio">
+            <label for="horario_fim">Fim</label>
+            <input type="time" id="horario_fim">
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao"></textarea>
+            <input type="hidden" id="id">
+            <button id="enviar">Salvar</button>
+            <a href="index.html">Voltar</a>
+        </div>
+    </main>
+    <script src="../js/valida_sessao.js"></script>
+    <script src="../js/partida_alterar.js"></script>
+</body>
+</html>

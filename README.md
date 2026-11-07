@@ -4,131 +4,41 @@ Plataforma web para organizar e encontrar partidas de futebol amador.
 
 ## Tecnologias
 
-- HTML, CSS e JavaScript, sem framework
-- PHP 8 com `mysqli`
+- HTML, CSS e JavaScript
+- PHP com `mysqli`
 - MySQL/MariaDB
-- Leaflet e tiles do OpenStreetMap (mapa)
-- Photon (busca de endereços e coordenadas)
+- Leaflet e OpenStreetMap
 
 ## Instalação
 
-1. Copie a pasta `sportmap` para o diretório público do servidor (no XAMPP, `C:\xampp\htdocs\`).
-2. Execute `sportmap.sql` e, em seguida, `sportmap_v2_migracao.sql`.
-3. Ajuste as credenciais do banco em `php/conexao.php`, se necessário.
-4. Acesse `http://localhost/sportmap/`.
-
-O usuário superadmin inicial é criado por `sportmap_v2_migracao.sql`.
+1. Copie os arquivos do repositório para `C:\xampp\htdocs\sportmap\`.
+2. Execute `database/sportmap.sql` e, em seguida, `database/sportmap_v2.sql` no phpMyAdmin.
+3. Acesse `http://localhost/sportmap/`.
 
 ## Estrutura
 
 | Pasta | Conteúdo |
 |---|---|
-| `login/` | Telas públicas: login e cadastro |
-| `home/` | Telas autenticadas |
-| `js/` | Um script por tela, mais os módulos compartilhados |
-| `php/` | Endpoints da API |
-| `css/` | Folha de estilo única |
+| `login/` | Login e cadastro |
+| `home/` | Telas depois do login |
+| `js/` | Scripts das telas |
+| `php/` | Requisições ao banco |
+| `css/` | Estilos |
 
-Arquivos compartilhados:
+## CRUDs
 
-| Arquivo | Responsabilidade |
-|---|---|
-| `php/conexao.php` | Conexão com o banco e tratamento global de exceções |
-| `php/funcoes.php` | Resposta JSON, sessão, permissões, validações e regras de partida |
-| `js/valida_sessao.js` | Requisições, avisos, formatação e menu |
-| `js/preferencias.js` | Tema e idioma |
-| `js/idioma_textos.js` | Dicionário de traduções |
-| `js/endereco_EDW.js` | Autocompletar de endereço |
+| CRUD | Criar | Ler | Alterar | Excluir |
+|---|---|---|---|---|
+| Usuário | `usuario_novo` | `usuario_get` | `usuario_alterar` | `usuario_excluir` |
+| Partida | `partida_novo` | `partida_get` | `partida_alterar` | `partida_excluir` |
+| Escalação | `escalacao_novo` | `escalacao_get` | `escalacao_alterar` | `escalacao_excluir` |
+| Quadra | `quadra_novo` | `quadra_get` | `quadra_alterar` | `quadra_excluir` |
+| Time | `time_novo` | `time_get` | `time_alterar` | `time_excluir` |
 
-## API
+## Tipos de partida
 
-Todas as respostas seguem o formato:
-
-```json
-{ "status": "ok", "mensagem": "texto", "data": [] }
-```
-
-`status` é `ok` ou `nok`. Operações de escrita aceitam apenas POST. Com exceção de cadastro, login e logoff, os endpoints exigem sessão ativa.
-
-### Usuário
-
-| Endpoint | Método | Função |
+| Tipo | Na busca | Entrada |
 |---|---|---|
-| `usuario_novo_LEO.php` | POST | Cadastro |
-| `usuario_login.php` | POST | Inicia a sessão |
-| `usuario_logoff.php` | POST | Encerra a sessão |
-| `valida_sessao.php` | GET | Dados do usuário logado |
-| `usuario_get_LEO.php` | GET | Lista (superadmin) ou `?id=` |
-| `usuario_alterar_LEO.php?id=` | POST | Altera perfil, senha e situação |
-| `usuario_excluir_LEO.php?id=` | POST | Exclusão lógica (`ativo = 0`) |
-
-### Partida
-
-| Endpoint | Método | Função |
-|---|---|---|
-| `partida_novo_CHA.php` | POST | Cria a partida |
-| `partida_get_CHA.php` | GET | `?id=` ou lista com `local`, `data`, `hora`, `modalidade` e `minhas` |
-| `partida_alterar_CHA.php?id=` | POST | Altera a partida (organizador ou superadmin) |
-| `partida_excluir_CHA.php?id=` | POST | Cancela a partida (`status_partida = cancelada`) |
-| `modalidade_get.php` | GET | Lista as modalidades |
-
-### Escalação
-
-| Endpoint | Método | Função |
-|---|---|---|
-| `escalacao_novo_EDS.php` | POST | Entra na partida ou, com `email`, registra um convite |
-| `escalacao_get_EDS.php?id_partida=` | GET | Jogadores da partida |
-| `escalacao_alterar_EDS.php` | POST | `acao`: `posicao`, `aceitar`, `recusar`, `aprovar` ou `reprovar` |
-| `escalacao_excluir_EDS.php` | POST | Sai da partida ou remove um jogador (`id_jogador`) |
-
-### Quadra
-
-| Endpoint | Método | Função |
-|---|---|---|
-| `quadra_novo_EDW.php` | POST | Cadastra a quadra como pendente |
-| `quadra_get_EDW.php` | GET | Próprias quadras, `?id=` ou `?aprovadas=1` |
-| `quadra_proximas_EDW.php?lat=&lng=&raio=` | GET | Quadras aprovadas por distância, com as próximas partidas |
-| `quadra_alterar_EDW.php?id=` | POST | Altera a quadra; alteração do dono retorna à validação |
-| `quadra_validar_EDW.php` | POST | `acao`: `aprovada` ou `reprovada` (superadmin) |
-| `quadra_excluir_EDW.php?id=` | POST | Remove quadra sem partidas vinculadas |
-
-### Time
-
-| Endpoint | Método | Função |
-|---|---|---|
-| `time_novo_PED.php` | POST | Cria o time e adiciona o criador |
-| `time_get_PED.php` | GET | Lista ou `?id=`, com total de membros |
-| `time_alterar_PED.php?id=` | POST | Altera o time (criador ou superadmin) |
-| `time_excluir_PED.php?id=` | POST | Remove o time e seus vínculos |
-| `jogador_time_novo_PED.php` | POST | Entra no time |
-| `jogador_time_get_PED.php?id_time=` | GET | Jogadores do time |
-| `jogador_time_excluir_PED.php` | POST | Sai do time ou remove um jogador (`id_jogador`) |
-
-## Regras principais
-
-- **Perfis:** `usuario`, `dono_quadra` e `superadmin`.
-- **Tipos de partida:** `publica` (entrada direta), `privada_visivel` (entrada aprovada pelo organizador) e `privada_convite` (visível apenas para organizador, convidados e superadmin).
-- **Status da partida:** `aberta`, `completa`, `cancelada` e `encerrada`. A troca entre `aberta` e `completa` é automática conforme as vagas.
-- **Vagas:** a linha da partida é bloqueada com `SELECT ... FOR UPDATE` durante entradas e aprovações.
-- **Conflito de horário:** uma quadra não aceita duas partidas ativas em horários sobrepostos.
-- **Quadras:** só quadras com `status_validacao = aprovada` recebem partidas novas.
-
-## Segurança
-
-- Senhas com `password_hash` e `password_verify`
-- Consultas preparadas em todos os valores recebidos
-- Saída escapada no front-end com `esc()`
-- Cookie de sessão `HttpOnly` e `SameSite=Lax`
-- Permissões verificadas nos endpoints
-
-## Localização
-
-`js/endereco_EDW.js` consulta o Photon durante a digitação e preenche os campos `latitude` e `longitude` ao escolher uma sugestão. Quadras sem coordenadas não aparecem em `quadra_proximas_EDW.php`.
-
-A distância é calculada em SQL com a fórmula de Haversine. A geolocalização do navegador exige `localhost` ou HTTPS.
-
-## Tema e idioma
-
-O tema usa variáveis CSS, com o tema escuro definido em `:root[data-tema="escuro"]`.
-
-O texto-fonte é o português. `js/preferencias.js` usa um `MutationObserver` para aplicar as traduções para inglês e espanhol de `js/idioma_textos.js`, incluindo as mensagens da API.
+| Pública | Aparece para todos | Direta |
+| Privada visível | Aparece para todos | Aprovada pelo organizador (`escalacao_validar`) |
+| Privada por convite | Só para organizador, admin e convidados | Por convite (`escalacao_convidar`) |

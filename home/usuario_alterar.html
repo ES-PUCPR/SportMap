@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportMap</title>
+    <script src="../js/idioma.js"></script>
+    <script src="../js/tema.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header><nav id="menu"></nav><select id="idioma">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+        </select><button id="tema"></button></header>
+    <main>
+        <div class="caixa">
+            <h1>Perfil</h1>
+            <label for="nome">Nome</label>
+            <input type="text" id="nome">
+            <label for="cpf">CPF</label>
+            <input type="text" id="cpf" disabled>
+            <label for="email">E-mail</label>
+            <input type="email" id="email">
+            <label for="telefone">Telefone</label>
+            <input type="text" id="telefone">
+            <label for="posicao">Posição</label>
+            <select id="posicao">
+                <option value="">Sem preferência</option>
+                <option value="Goleiro">Goleiro</option>
+                <option value="Zagueiro">Zagueiro</option>
+                <option value="Lateral">Lateral</option>
+                <option value="Volante">Volante</option>
+                <option value="Meia">Meia</option>
+                <option value="Atacante">Atacante</option>
+            </select>
+            <label for="senha">Nova senha (opcional)</label>
+            <input type="password" id="senha">
+            <input type="hidden" id="id">
+            <button id="enviar">Salvar</button>
+        </div>
+    </main>
+    <script src="../js/valida_sessao.js"></script>
+    <script src="../js/usuario_alterar.js"></script>
+</body>
+</html>

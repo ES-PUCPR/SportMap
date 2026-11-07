@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportMap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="../js/idioma.js"></script>
+    <script src="../js/tema.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header><nav id="menu"></nav><select id="idioma">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+        </select><button id="tema"></button></header>
+    <main>
+        <h1>Quadras próximas</h1>
+        <div class="caixa">
+            <button id="gps">Usar minha localização</button>
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" placeholder="Digite um endereço">
+        </div>
+        <div id="mapa"></div>
+        <div id="lista"></div>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/valida_sessao.js"></script>
+    <script src="../js/endereco.js"></script>
+    <script src="../js/mapa.js"></script>
+</body>
+</html>
