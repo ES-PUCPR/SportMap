@@ -5,12 +5,14 @@ $retorno = ['status' => '', 'mensagem' => '', 'data' => []];
 
 $logado = $_SESSION['usuario'][0];
 
+// Proteção de rota: Somente administrador pode acessar essa funcionalidade
 if ($logado['admin'] != 1) {
     $retorno['status']   = 'nok';
     $retorno['mensagem'] = 'Apenas o administrador pode validar quadras.';
 } else {
     $conexao->begin_transaction();
 
+    // Atualiza o status (aprovada/reprovada), marca quem validou e a data da validação
     $stmt = $conexao->prepare('UPDATE quadra SET status_validacao = ?, id_validador = ?, data_validacao = NOW() WHERE id_quadra = ?');
     $stmt->bind_param('sii', $_POST['status'], $logado['id_usuario'], $_POST['id_quadra']);
 
