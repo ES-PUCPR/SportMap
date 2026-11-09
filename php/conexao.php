@@ -1,7 +1,7 @@
 <?php
 $servidor = 'localhost:3306';
-$usuario = 'root';
-$senha = '';
+$usuario = 'sportmap_app';
+$senha = 'pucpr2026';
 $nome_banco = 'sportmap';
 
 $conexao = new mysqli($servidor, $usuario, $senha, $nome_banco);
