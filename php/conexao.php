@@ -4,6 +4,8 @@ $usuario = 'sportmap_app';
 $senha = 'pucpr2026';
 $nome_banco = 'sportmap';
 
+mysqli_report(MYSQLI_REPORT_OFF);
+
 $conexao = new mysqli($servidor, $usuario, $senha, $nome_banco);
 
 if($conexao->connect_error){
