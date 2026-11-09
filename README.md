@@ -12,7 +12,7 @@ Plataforma web para organizar e encontrar partidas de futebol amador.
 ## Instalação
 
 1. Copie os arquivos do repositório para `C:\xampp\htdocs\sportmap\`.
-2. Execute `database/sportmap.sql` e, em seguida, `database/sportmap_v2.sql` no phpMyAdmin.
+2. No phpMyAdmin, execute nesta ordem `database/sportmap.sql`, `database/sportmap_v2.sql` e `database/sportmap_v3_permissoes.sql`.
 3. Acesse `http://localhost/sportmap/`.
 
 ## Estrutura
