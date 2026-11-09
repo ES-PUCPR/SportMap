@@ -11,13 +11,13 @@ $stmt = $conexao->prepare('DELETE e FROM escalacao e JOIN jogador j ON j.id_joga
 $stmt->bind_param('ii', $_GET['id_partida'], $id_usuario);
 $stmt->execute();
 
-if ($stmt->affected_rows > 0) {
+if($stmt->affected_rows > 0){
     $conexao->commit();
-    $retorno['status']   = 'ok';
+    $retorno['status'] = 'ok';
     $retorno['mensagem'] = 'Registro excluído.';
-} else {
+}else{
     $conexao->rollback();
-    $retorno['status']   = 'nok';
+    $retorno['status'] = 'nok';
     $retorno['mensagem'] = 'Registro não excluído.';
 }
 
