@@ -42,3 +42,11 @@ Plataforma web para organizar e encontrar partidas de futebol amador.
 | Pública | Aparece para todos | Direta |
 | Privada visível | Aparece para todos | Aprovada pelo organizador (`escalacao_validar`) |
 | Privada por convite | Só para organizador, admin e convidados | Por convite (`escalacao_convidar`) |
+
+## CRUD
+
+| Chadi | **Partida** | Criar, listar, alterar e cancelar partidas |
+| Edson | **Escalação** | Entrar em uma partida, ver jogadores, trocar de posição e sair |
+| Edward | **Quadra** | Cadastrar, listar, alterar e excluir quadras, além do mapa |
+| Leo Neves | **Usuário** | Criar conta, listar, alterar perfil e desativar conta |
+| Pedro Viana | **Time** | Criar, listar, alterar e excluir times |
