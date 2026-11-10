@@ -70,7 +70,7 @@ function traduzirElemento(elemento) {
 }
 
 if (idioma == 'en') {
-    // Traduz também o que for adicionado à página depois, como as listas
+    // Traduz também o conteúdo inserido depois, como as listas
     new MutationObserver((mudancas) => {
         for (const mudanca of mudancas) {
             mudanca.addedNodes.forEach(traduzirElemento);

@@ -2,7 +2,7 @@ let mapa = null;
 let marcadores = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    valida_sessao();
+    validaSessao();
 
     mapa = L.map('mapa').setView([-15.78, -47.93], 4);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

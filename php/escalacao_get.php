@@ -4,11 +4,11 @@ session_start();
 $retorno = ['status' => '', 'mensagem' => '', 'data' => []];
 
 $logado = $_SESSION['usuario'][0] ?? ['id_usuario' => 0, 'admin' => 0];
-$eu = $logado['id_usuario'];
-$admin = (int) $logado['admin'];
+$eu     = $logado['id_usuario'];
+$admin  = (int) $logado['admin'];
 
-// O organizador e o admin veem todos. Os demais veem a própria linha e os confirmados,
-// os confirmados de uma partida por convite só aparecem para quem faz parte dela.
+// Organizador e admin veem todos; os demais veem a própria linha e os confirmados.
+// Em partida por convite, os confirmados só aparecem para quem participa dela.
 $stmt = $conexao->prepare(
     "SELECT e.id_jogador, e.posicao, e.status_participacao, u.nome, (u.id_usuario = ?) AS eu
      FROM escalacao e
@@ -27,7 +27,7 @@ $stmt->execute();
 $resultado = $stmt->get_result();
 
 $tabela = [];
-while ($linha = $resultado->fetch_assoc()){
+while ($linha = $resultado->fetch_assoc()) {
     $tabela[] = $linha;
 }
 $retorno['status']   = 'ok';

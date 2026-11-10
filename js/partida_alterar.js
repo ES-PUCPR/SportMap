@@ -1,29 +1,10 @@
-// Fase 1
 document.addEventListener('DOMContentLoaded', async () => {
-    valida_sessao();
+    validaSessao();
     const url = new URLSearchParams(window.location.search);
     const id  = url.get('id');
     await carregarOpcoes();
     buscar(id);
 });
-
-async function carregarOpcoes() {
-    let retorno  = await fetch('../php/quadra_get.php?aprovadas=1');
-    let resposta = await retorno.json();
-    let html = '';
-    for (const q of resposta.data) {
-        html += `<option value='${q.id_quadra}'>${q.nome_quadra}</option>`;
-    }
-    document.getElementById('id_quadra').innerHTML = html;
-
-    retorno  = await fetch('../php/modalidade_get.php');
-    resposta = await retorno.json();
-    html = '';
-    for (const m of resposta.data) {
-        html += `<option value='${m.id_modalidade}'>${m.nome}</option>`;
-    }
-    document.getElementById('id_modalidade').innerHTML = html;
-}
 
 async function buscar(id) {
     const retorno  = await fetch('../php/partida_get.php?id=' + id);
@@ -45,10 +26,7 @@ async function buscar(id) {
     }
 }
 
-// Fase 2
-document.getElementById('enviar').addEventListener('click', () => {
-    alterar();
-});
+document.getElementById('enviar').addEventListener('click', alterar);
 
 async function alterar() {
     const id = document.getElementById('id').value;

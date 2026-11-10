@@ -18,10 +18,8 @@ $stmt->execute();
 $resultado = $stmt->get_result();
 
 $tabela = [];
-if ($resultado->num_rows > 0) {
-    while ($linha = $resultado->fetch_assoc()) {
-        $tabela[] = $linha;
-    }
+while ($linha = $resultado->fetch_assoc()) {
+    $tabela[] = $linha;
 }
 
 if (count($tabela) > 0 && password_verify($_POST['senha'], $tabela[0]['senha'])) {

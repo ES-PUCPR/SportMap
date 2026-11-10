@@ -20,7 +20,7 @@ if (empty($id_quadra) || empty($id_modalidade) || empty($data) || empty($inicio)
 } else {
     $conexao->begin_transaction();
 
-    // FOR UPDATE: trava as partidas da quadra no horário, para duas pessoas não marcarem o mesmo
+    // FOR UPDATE impede que duas pessoas marquem o mesmo horário na quadra
     $stmt = $conexao->prepare(
         "SELECT p.id_partida FROM partida p
          JOIN partida_quadra pq ON pq.id_partida = p.id_partida
