@@ -1,6 +1,4 @@
-document.getElementById('enviar').addEventListener('click', () => {
-    login();
-});
+document.getElementById('enviar').addEventListener('click', login);
 
 async function login() {
     const fd = new FormData();

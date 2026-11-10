@@ -1,4 +1,4 @@
-// Sugere endereços durante a digitação, com o serviço Photon (dados do OpenStreetMap).
+// Autocomplete de endereço via Photon (OpenStreetMap)
 function ligarEndereco(idCampo, aoEscolher) {
     const campo = document.getElementById(idCampo);
     const lista = document.createElement('datalist');
@@ -23,7 +23,7 @@ function ligarEndereco(idCampo, aoEscolher) {
         const retorno  = await fetch('https://photon.komoot.io/api/?limit=5&bbox=-74,-34,-34,6&q=' + encodeURIComponent(texto));
         const resposta = await retorno.json();
 
-        // Mantém o número digitado, que muitas ruas do mapa não têm cadastrado
+        // Mantém o número digitado: muitas ruas do OSM não têm numeração
         const numero = texto.match(/,\s*(\d+)/);
 
         let html = '';

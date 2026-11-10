@@ -3,7 +3,7 @@ const id  = url.get('id');
 let usuario = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
-    usuario = await valida_sessao();
+    usuario = await validaSessao();
     buscar();
 });
 
@@ -87,10 +87,10 @@ function mostrarJogadores(jogadores, partida) {
     }
 }
 
-async function validarEntrada(id_jogador, status) {
+async function validarEntrada(idJogador, status) {
     const fd = new FormData();
     fd.append('id_partida', id);
-    fd.append('id_jogador', id_jogador);
+    fd.append('id_jogador', idJogador);
     fd.append('status',     status);
 
     const retorno  = await fetch('../php/escalacao_validar.php', {

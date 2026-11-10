@@ -1,17 +1,15 @@
 let partidas = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-    valida_sessao();
-    // O mapa abre esta tela com o nome da quadra na URL
+    validaSessao();
+    // Vindo do mapa, a URL traz o nome da quadra
     const url = new URLSearchParams(window.location.search);
     document.getElementById('local').value = url.get('local') || '';
     carregarModalidades();
     buscar();
 });
 
-document.getElementById('filtrar').addEventListener('click', () => {
-    preencherLista();
-});
+document.getElementById('filtrar').addEventListener('click', preencherLista);
 
 async function carregarModalidades() {
     const retorno  = await fetch('../php/modalidade_get.php');

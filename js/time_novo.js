@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    valida_sessao();
+    validaSessao();
 });
 
-document.getElementById('enviar').addEventListener('click', () => {
-    novo();
-});
+document.getElementById('enviar').addEventListener('click', novo);
 
 async function novo() {
     const fd = new FormData();

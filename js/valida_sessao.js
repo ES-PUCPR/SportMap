@@ -4,7 +4,7 @@ const TIPOS_PARTIDA = {
     privada_convite: 'Privada por convite'
 };
 
-async function valida_sessao() {
+async function validaSessao() {
     const retorno  = await fetch('../php/valida_sessao.php');
     const resposta = await retorno.json();
     if (resposta.status == 'nok') {
@@ -36,4 +36,22 @@ async function logoff() {
     if (resposta.status == 'ok') {
         window.location.href = '../login/';
     }
+}
+
+async function carregarOpcoes() {
+    let retorno  = await fetch('../php/quadra_get.php?aprovadas=1');
+    let resposta = await retorno.json();
+    let html = '';
+    for (const q of resposta.data) {
+        html += `<option value='${q.id_quadra}'>${q.nome_quadra}</option>`;
+    }
+    document.getElementById('id_quadra').innerHTML = html;
+
+    retorno  = await fetch('../php/modalidade_get.php');
+    resposta = await retorno.json();
+    html = '';
+    for (const m of resposta.data) {
+        html += `<option value='${m.id_modalidade}'>${m.nome}</option>`;
+    }
+    document.getElementById('id_modalidade').innerHTML = html;
 }

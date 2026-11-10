@@ -18,7 +18,7 @@ $sql = "SELECT p.*, m.nome AS modalidade, q.id_quadra, q.nome_quadra, q.endereco
         JOIN quadra q ON q.id_quadra = pq.id_quadra
         LEFT JOIN usuario u ON u.id_usuario = p.id_organizador";
 
-// A partida por convite só aparece para o organizador, o admin e quem tem convite
+// Partida por convite só aparece para organizador, admin e convidados
 $acesso = "(p.tipo_acesso <> 'privada_convite' OR p.id_organizador = ? OR ? = 1
             OR EXISTS (SELECT 1 FROM escalacao e JOIN jogador j ON j.id_jogador = e.id_jogador
                        WHERE e.id_partida = p.id_partida AND j.id_usuario = ?))";

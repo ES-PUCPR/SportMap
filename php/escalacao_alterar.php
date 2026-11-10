@@ -10,11 +10,11 @@ $conexao->begin_transaction();
 $stmt = $conexao->prepare('UPDATE escalacao e JOIN jogador j ON j.id_jogador = e.id_jogador SET e.posicao = ? WHERE e.id_partida = ? AND j.id_usuario = ?');
 $stmt->bind_param('sii', $_POST['posicao'], $_POST['id_partida'], $id_usuario);
 
-if ($stmt->execute()){
+if ($stmt->execute()) {
     $conexao->commit();
     $retorno['status']   = 'ok';
     $retorno['mensagem'] = 'Registro alterado com sucesso.';
-}else{
+} else {
     $conexao->rollback();
     $retorno['status']   = 'nok';
     $retorno['mensagem'] = 'Não foi possível alterar o registro.';

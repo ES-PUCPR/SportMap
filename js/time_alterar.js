@@ -1,6 +1,5 @@
-// Fase 1
 document.addEventListener('DOMContentLoaded', () => {
-    valida_sessao();
+    validaSessao();
     const url = new URLSearchParams(window.location.search);
     const id  = url.get('id');
     buscar(id);
@@ -22,10 +21,7 @@ async function buscar(id) {
     }
 }
 
-// Fase 2
-document.getElementById('enviar').addEventListener('click', () => {
-    alterar();
-});
+document.getElementById('enviar').addEventListener('click', alterar);
 
 async function alterar() {
     const id = document.getElementById('id').value;

@@ -1,5 +1,4 @@
 <?php
-// Confere se o usuário logado é o organizador da partida ou o administrador
 function ehOrganizador($conexao, $id_partida) {
     if (!isset($_SESSION['usuario'])) {
         return false;
