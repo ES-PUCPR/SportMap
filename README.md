@@ -45,8 +45,22 @@ Plataforma web para organizar e encontrar partidas de futebol amador.
 
 ## CRUD
 
-| Chadi | `Partida` | `Criar, listar, alterar e cancelar partidas` |
-| Edson | `Escalação` | `Entrar em uma partida, ver jogadores, trocar de posição e sair` |
-| Edward | `Quadra` | `Cadastrar, listar, alterar e excluir quadras, além do mapa` |
-| Leo Neves | `Usuário` | `Criar conta, listar, alterar perfil e desativar conta` |
-| Pedro Viana | `Time` | `Criar, listar, alterar e excluir times` |
+- **Chadi**
+  - Módulo: `Partida`
+  - Ações: Criar, listar, alterar e cancelar partidas
+
+- **Edson**
+  - Módulo: `Escalação`
+  - Ações: Entrar em uma partida, ver jogadores, trocar de posição e sair
+
+- **Edward**
+  - Módulo: `Quadra`
+  - Ações: Cadastrar, listar, alterar e excluir quadras, além do mapa
+
+- **Leo Neves**
+  - Módulo: `Usuário`
+  - Ações: Criar conta, listar, alterar perfil e desativar conta
+
+- **Pedro Viana**
+  - Módulo: `Time`
+  - Ações: Criar, listar, alterar e excluir times
